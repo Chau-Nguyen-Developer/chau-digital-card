@@ -25,13 +25,13 @@ const fontPath = path.join(__dirname, 'larry3d');
 
 
 const card = boxen(`
-${figlet.text("Hello", {font:"3D-ASCII", horizontalLayout:'default', verticalLayout:'default'}, function(err,data)
+${figlet.text("Hello", {font:"3D-ASCII"}, function(err,data)
 {
     if(err)
     {
         //console.error("Error loading font: ", err);
         throw err;
-        //return;
+        return;
     }
     console.log(data);
 })}
