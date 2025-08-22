@@ -6,7 +6,25 @@ import figlet from "figlet";
 import path from "path";
 import { dirname } from "path";
 import { fileURLToPath } from 'url';
+import { promisify } from "util";
 
+const figletAsync = promisify(figlet);
+
+async function greeting()
+{
+    try
+    {
+        // const hello = await figletAsync(" Hello ", { font: "3D-ASCII"});
+        const hello2 = await figlet.text("Hello", {font:"3D-ASCII"});
+        console.log(hello);
+    }
+    catch(err)
+    {
+        console.error("Error loading font: ", err);
+    }
+}
+const hello = greeting();
+console.log(hello);
 //Get the current folder
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -22,19 +40,21 @@ const fontPath = path.join(__dirname, 'larry3d');
 
 
 //const fontPath = "/workspaces/chau-digital-card/fonts/larry3d";
+// ${figlet.text("Hello", {font:"3D-ASCII"}, function(err,data)
+// {
+//     if(err)
+//     {
+//         //console.error("Error loading font: ", err);
+//         throw err;
+//         return;
+//     }
+//     console.log(data);
+// })}
 
+// const hello = figlet.text(" Good Day", {font:"3D-ASCII"});
+// console.log(hello)
 
 const card = boxen(`
-${figlet.text("Hello", {font:"3D-ASCII"}, function(err,data)
-{
-    if(err)
-    {
-        //console.error("Error loading font: ", err);
-        throw err;
-        return;
-    }
-    console.log(data);
-})}
 ${chalk.bold('Chau Nguyen Developer ')} |  Software Engineer
 ${chalk.bold('-'.repeat(60))}
 
@@ -55,3 +75,6 @@ ${chalk.bold('Card: ')} npx chauDeveloper
 );
 
 console.log(card)
+
+// const hello = figlet.text(" Good Day", {font:"3D-ASCII"});
+// console.log(hello)
